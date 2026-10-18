@@ -12,81 +12,151 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <div class="wrap nav">
+
+<div class="top">
+  <div class="wrap">
     <a href="#"><img src="assets/logo-dark.svg" alt="AgenteCode"></a>
     <nav>
-      <a href="#recursos">Recursos</a>
+      <a href="https://github.com/agentecode/agentecode">Código-fonte</a>
+      <a href="https://github.com/agentecode/agentecode/releases">Releases</a>
+      <a href="https://github.com/agentecode/agentecode/issues">Suporte</a>
+    </nav>
+  </div>
+</div>
+
+<header class="sub-nav">
+  <div class="wrap">
+    <a class="name" href="#"><img src="assets/logo-mark.svg" alt=""> AgenteCode</a>
+    <nav>
+      <a href="#cobre">Recursos</a>
       <a href="#temas">Temas</a>
-      <a href="https://github.com/agentecode/agentecode">GitHub</a>
+      <a href="#novidades">Novidades</a>
       <a class="btn primary" href="#download">Baixar</a>
     </nav>
   </div>
 </header>
 
 <main>
-  <div class="wrap hero">
-    <img class="mark" src="assets/logo-mark.svg" alt="">
-    <h1>A IDE feita para <span>agentes autônomos</span></h1>
-    <p class="lead">AgenteCode é uma distribuição moderna do Code - OSS, focada em pair programming agêntico, com Claude Code integrado e uma interface limpa, sem bordas.</p>
+  <div class="hero">
+    <a class="eyebrow" href="https://github.com/agentecode/agentecode">Open source · Licença MIT</a>
+    <h1>A IDE para <span>agentes autônomos</span></h1>
+    <p class="lead">Distribuição moderna do Code - OSS, com Claude Code integrado, interface sem bordas e pronta para o fluxo agêntico.</p>
     <div class="cta">
       <a class="btn primary" href="#download">Baixar para Windows</a>
       <a class="btn ghost" href="https://github.com/agentecode/agentecode">Ver no GitHub</a>
     </div>
+    <p class="note">Windows 10 ou superior, 64 bits</p>
     <div class="shot"><img src="assets/screenshots/everforest-clean.png" alt="AgenteCode com o tema Everforest Clean"></div>
   </div>
 
-  <section id="recursos" class="alt">
+  <section id="cobre">
     <div class="wrap">
-      <h2>Feito para o fluxo agêntico</h2>
-      <p class="sub">Menos ruído, mais código. Tudo o que você precisa já vem configurado.</p>
-      <div class="grid">
-        <div class="card"><span class="tag"></span><h3>Claude Code nativo</h3><p>O agente de codificação já integrado na barra lateral direita. Abra e recolha com Ctrl + L.</p></div>
-        <div class="card"><span class="tag"></span><h3>Seamless Canvas</h3><p>Interface sem bordas rígidas: editor, barras e painéis formam uma superfície contínua e sem distrações.</p></div>
-        <div class="card"><span class="tag"></span><h3>Zero bloatware</h3><p>Sem pop-ups comerciais, sem daemons em segundo plano e com inicialização rápida.</p></div>
-        <div class="card"><span class="tag"></span><h3>Built-in Power Suite</h3><p>C#, .NET, SQL Server, diagramas Mermaid e métricas de uso do Claude já à mão.</p></div>
-        <div class="card"><span class="tag"></span><h3>8 temas nativos</h3><p>Quatro paletas, cada uma nas variantes normal e Clean.</p></div>
-        <div class="card"><span class="tag"></span><h3>Extensões via Open VSX</h3><p>Milhares de extensões da comunidade, sem depender do marketplace proprietário.</p></div>
+      <div class="sec-head"><h2>O AgenteCode cobre o seu dia a dia</h2><p>Tudo o que você precisa já vem configurado, sem pop-ups e sem ruído.</p></div>
+      <div class="cats">
+        <div class="cat wide">
+          <div><h3>IA</h3><p>Claude Code integrado na barra lateral direita, com atalho de abrir e recolher (Ctrl + L) e monitor de uso, contexto e custo na barra de status.</p></div>
+          <a class="btn ghost" href="#temas">Ver a interface</a>
+        </div>
+        <div class="cat"><h3>.NET e dados</h3><ul><li>C# Dev Tools</li><li>.NET Install Tool</li><li>SQL Server (mssql)</li></ul></div>
+        <div class="cat"><h3>Documentação</h3><ul><li>Markhub com diagramas Mermaid</li><li>Editor de Markdown rico</li><li>Visualização lado a lado</li></ul></div>
+        <div class="cat"><h3>Interface</h3><ul><li>Seamless Canvas, sem bordas</li><li>Activity Bar de 42 px</li><li>8 temas nativos</li></ul></div>
+        <div class="cat"><h3>Ecossistema</h3><ul><li>Extensões via Open VSX</li><li>Base Code - OSS</li><li>Código aberto sob licença MIT</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <div class="sec-head"><h2>Potencialize o seu fluxo</h2></div>
+      <div class="trio">
+        <div><h3>Poderoso</h3><p>O agente de codificação conversa com o seu projeto direto do editor, para você delegar tarefas e revisar o resultado no mesmo lugar.</p></div>
+        <div><h3>Rápido</h3><p>Sem daemons em segundo plano e sem telas promocionais. A IDE abre rápido e fica fora do seu caminho.</p></div>
+        <div><h3>Livre</h3><p>Baseada em software aberto e conectada ao Open VSX, para instalar as extensões da comunidade sem depender de um marketplace proprietário.</p></div>
       </div>
     </div>
   </section>
 
   <section id="temas">
     <div class="wrap">
-      <h2>Temas</h2>
-      <p class="sub">Quatro paletas, cada uma em variante normal e Clean. Clique para ampliar.</p>
-      <div class="themes">
-        <a href="assets/screenshots/everforest-clean.png" target="_blank" rel="noopener"><figure><img src="assets/screenshots/everforest-clean.png" alt="Tema Everforest Clean" loading="lazy"><figcaption>Everforest<span>Clean</span></figcaption></figure></a>
-        <a href="assets/screenshots/deep-teal-clean.png" target="_blank" rel="noopener"><figure><img src="assets/screenshots/deep-teal-clean.png" alt="Tema Deep Teal Clean" loading="lazy"><figcaption>Deep Teal<span>Clean</span></figcaption></figure></a>
-        <a href="assets/screenshots/eficaz-clean.png" target="_blank" rel="noopener"><figure><img src="assets/screenshots/eficaz-clean.png" alt="Tema AgenteCode Eficaz Clean" loading="lazy"><figcaption>AgenteCode Eficaz<span>Clean</span></figcaption></figure></a>
-        <a href="assets/screenshots/one-dark-pro-clean.png" target="_blank" rel="noopener"><figure><img src="assets/screenshots/one-dark-pro-clean.png" alt="Tema One Dark Pro Clean" loading="lazy"><figcaption>One Dark Pro<span>Clean</span></figcaption></figure></a>
-        <a href="assets/screenshots/everforest.png" target="_blank" rel="noopener"><figure><img src="assets/screenshots/everforest.png" alt="Tema Everforest Normal" loading="lazy"><figcaption>Everforest<span>Normal</span></figcaption></figure></a>
-        <a href="assets/screenshots/deep-teal.png" target="_blank" rel="noopener"><figure><img src="assets/screenshots/deep-teal.png" alt="Tema Deep Teal Normal" loading="lazy"><figcaption>Deep Teal<span>Normal</span></figcaption></figure></a>
-        <a href="assets/screenshots/eficaz.png" target="_blank" rel="noopener"><figure><img src="assets/screenshots/eficaz.png" alt="Tema AgenteCode Eficaz Normal" loading="lazy"><figcaption>AgenteCode Eficaz<span>Normal</span></figcaption></figure></a>
-        <a href="assets/screenshots/one-dark-pro.png" target="_blank" rel="noopener"><figure><img src="assets/screenshots/one-dark-pro.png" alt="Tema One Dark Pro Normal" loading="lazy"><figcaption>One Dark Pro<span>Normal</span></figcaption></figure></a>
+      <div class="sec-head"><h2>Quatro paletas, duas versões</h2><p>Escolha a variante normal, com painéis em tons distintos, ou a Clean, com uma superfície única e contínua.</p></div>
+      <div class="showcase">
+        <div class="tabs" role="tablist" aria-label="Temas">
+          <button class="tab" role="tab" aria-selected="true" data-theme="everforest"><b><i class="swatch" style="background:#a7c080"></i>Everforest</b><span>Tons orgânicos e baixo cansaço visual</span></button>
+          <button class="tab" role="tab" aria-selected="false" data-theme="deep-teal"><b><i class="swatch" style="background:#2aa198"></i>Deep Teal</b><span>Fundo esmeralda focado em leitura</span></button>
+          <button class="tab" role="tab" aria-selected="false" data-theme="eficaz"><b><i class="swatch" style="background:#3cdbc0"></i>AgenteCode Eficaz</b><span>Paleta azul petróleo e verde-água</span></button>
+          <button class="tab" role="tab" aria-selected="false" data-theme="one-dark-pro"><b><i class="swatch" style="background:#61afef"></i>One Dark Pro</b><span>O clássico dark, ajustado ao estilo sem bordas</span></button>
+        </div>
+        <div>
+          <div class="toggle">
+            <button type="button" data-variant="-clean" aria-pressed="true">Clean</button>
+            <button type="button" data-variant="" aria-pressed="false">Normal</button>
+          </div>
+          <div class="stage"><img id="stage-img" src="assets/screenshots/everforest-clean.png" alt="Tema Everforest Clean"></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="download" class="alt">
-    <div class="wrap dl">
-      <h2>Baixar o AgenteCode</h2>
-      <p class="sub">Instalador para Windows (x64). As versões ficam na página de Releases do GitHub.</p>
-      <a class="btn primary" href="https://github.com/agentecode/agentecode/releases">Ir para as Releases</a>
-      <ul>
-        <li>Windows 10 ou superior, 64 bits</li>
-        <li>Confira o hash SHA-256 publicado em cada Release</li>
-        <li>O Windows pode exibir um aviso do SmartScreen enquanto o instalador não for assinado</li>
-      </ul>
+  <section id="novidades" class="alt">
+    <div class="wrap">
+      <div class="sec-head"><h2>Novidades</h2></div>
+      <div class="cards">
+        <div class="card"><h3>Nova identidade</h3><p>Símbolo em loop infinito com os delimitadores &lt; e &gt;, em estilo flat, aplicado à IDE, ao instalador e a este site.</p><a href="https://github.com/agentecode/agentecode">Saiba mais</a></div>
+        <div class="card"><h3>8 temas nativos</h3><p>Everforest, Deep Teal, AgenteCode Eficaz e One Dark Pro, cada um em versão normal e Clean.</p><a href="#temas">Ver temas</a></div>
+        <div class="card"><h3>Código aberto</h3><p>Acompanhe o desenvolvimento, abra issues e contribua pelo repositório da organização.</p><a href="https://github.com/agentecode/agentecode">Abrir no GitHub</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="download" class="final">
+    <div class="wrap">
+      <h2>Comece a programar com agentes</h2>
+      <p class="lead">O instalador para Windows fica disponível na página de Releases do GitHub.</p>
+      <a class="btn primary" href="https://github.com/agentecode/agentecode/releases">Baixar o AgenteCode</a>
+      <p class="meta">Confira o hash SHA-256 publicado em cada Release. O Windows pode exibir um aviso do SmartScreen enquanto o instalador não for assinado.</p>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <p>© 2026 AgenteCode · Licença MIT · <a href="https://github.com/agentecode/agentecode">Código-fonte</a></p>
-    <p>Projeto independente baseado no Code - OSS. Não é patrocinado nem afiliado à Microsoft Corporation ou à Anthropic.</p>
+    <div class="cols">
+      <div><h4>Produto</h4><a href="#cobre">Recursos</a><a href="#temas">Temas</a><a href="#novidades">Novidades</a></div>
+      <div><h4>Baixar</h4><a href="https://github.com/agentecode/agentecode/releases">Releases</a><a href="#download">Windows (x64)</a></div>
+      <div><h4>Comunidade</h4><a href="https://github.com/agentecode/agentecode">GitHub</a><a href="https://github.com/agentecode/agentecode/issues">Issues</a></div>
+      <div><h4>Projeto</h4><a href="https://github.com/agentecode/agentecode/blob/main/LICENSE.txt">Licença MIT</a><a href="https://open-vsx.org">Open VSX</a></div>
+    </div>
+    <div class="legal">
+      <span>© 2026 AgenteCode · Licença MIT</span>
+      <span>Projeto independente baseado no Code - OSS. Não é patrocinado nem afiliado à Microsoft Corporation ou à Anthropic.</span>
+    </div>
   </div>
 </footer>
+
+<script>
+(function(){
+  var theme='everforest',variant='-clean';
+  var names={'everforest':'Everforest','deep-teal':'Deep Teal','eficaz':'AgenteCode Eficaz','one-dark-pro':'One Dark Pro'};
+  var img=document.getElementById('stage-img');
+  function render(){
+    img.src='assets/screenshots/'+theme+variant+'.png';
+    img.alt='Tema '+names[theme]+(variant?' Clean':'');
+  }
+  document.querySelectorAll('.tab').forEach(function(b){
+    b.addEventListener('click',function(){
+      theme=b.dataset.theme;
+      document.querySelectorAll('.tab').forEach(function(t){t.setAttribute('aria-selected',t===b)});
+      render();
+    });
+  });
+  document.querySelectorAll('.toggle button').forEach(function(b){
+    b.addEventListener('click',function(){
+      variant=b.dataset.variant;
+      document.querySelectorAll('.toggle button').forEach(function(t){t.setAttribute('aria-pressed',t===b)});
+      render();
+    });
+  });
+})();
+</script>
 </body>
 </html>
