@@ -113,7 +113,6 @@
         <div class="os-tabs" role="tablist" aria-label="Sistema operacional">
           <button type="button" role="tab" aria-selected="true" data-os="win">Windows</button>
           <button type="button" role="tab" aria-selected="false" data-os="linux">Linux</button>
-          <button type="button" role="tab" aria-selected="false" data-os="mac">macOS</button>
         </div>
         <div class="os-panel" data-panel="win">
           <p>PowerShell: baixa o instalador da última Release, mostra o hash SHA-256 e abre o instalador.</p>
@@ -130,10 +129,6 @@ curl -fLO "$url"
 sha256sum "${url##*/}"
 sudo apt install "./${url##*/}"</pre></div>
         </div>
-        <div class="os-panel" data-panel="mac" hidden>
-          <p>O pacote para macOS ainda não é gerado. Quando existir, o comando de instalação aparecerá aqui.</p>
-        </div>
-        <p class="fine">Os comandos funcionam a partir da primeira Release publicada. Hoje a página de Releases ainda está vazia. Leia os comandos antes de executar e confira o hash SHA-256 informado na Release.</p>
       </div>
     </div>
   </section>
