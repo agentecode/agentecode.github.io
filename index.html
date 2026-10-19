@@ -39,7 +39,7 @@
       <a class="btn ghost" href="https://github.com/agentecode/agentecode">Ver no GitHub</a>
     </div>
     <p class="note">Windows 10 ou superior, 64 bits</p>
-    <div class="shot"><img src="assets/screenshots/everforest-clean.png" alt="AgenteCode com o tema Everforest Clean"></div>
+    <div class="shot"><img src="assets/screenshots/deep-teal-clean.png" alt="AgenteCode com o tema Deep Teal Clean"></div>
   </div>
 
   <section id="cobre">
@@ -74,8 +74,8 @@
       <div class="sec-head"><h2>Quatro paletas, duas versões</h2><p>Escolha a variante normal, com painéis em tons distintos, ou a Clean, com uma superfície única e contínua.</p></div>
       <div class="showcase">
         <div class="tabs" role="tablist" aria-label="Temas">
-          <button class="tab" role="tab" aria-selected="true" data-theme="everforest"><b><i class="swatch" style="background:#a7c080"></i>Everforest</b><span>Tons orgânicos e baixo cansaço visual</span></button>
-          <button class="tab" role="tab" aria-selected="false" data-theme="deep-teal"><b><i class="swatch" style="background:#2aa198"></i>Deep Teal</b><span>Fundo esmeralda focado em leitura</span></button>
+          <button class="tab" role="tab" aria-selected="true" data-theme="deep-teal"><b><i class="swatch" style="background:#2aa198"></i>Deep Teal</b><span>Tema padrão da IDE. Fundo esmeralda focado em leitura</span></button>
+          <button class="tab" role="tab" aria-selected="false" data-theme="everforest"><b><i class="swatch" style="background:#a7c080"></i>Everforest</b><span>Tons orgânicos e baixo cansaço visual</span></button>
           <button class="tab" role="tab" aria-selected="false" data-theme="eficaz"><b><i class="swatch" style="background:#3cdbc0"></i>AgenteCode Eficaz</b><span>Paleta azul petróleo e verde-água</span></button>
           <button class="tab" role="tab" aria-selected="false" data-theme="one-dark-pro"><b><i class="swatch" style="background:#61afef"></i>One Dark Pro</b><span>O clássico dark, ajustado ao estilo sem bordas</span></button>
         </div>
@@ -84,7 +84,7 @@
             <button type="button" data-variant="-clean" aria-pressed="true">Clean</button>
             <button type="button" data-variant="" aria-pressed="false">Normal</button>
           </div>
-          <div class="stage"><img id="stage-img" src="assets/screenshots/everforest-clean.png" alt="Tema Everforest Clean"></div>
+          <div class="stage"><img id="stage-img" src="assets/screenshots/deep-teal-clean.png" alt="Tema Deep Teal Clean"></div>
         </div>
       </div>
     </div>
@@ -107,6 +107,34 @@
       <p class="lead">O instalador para Windows fica disponível na página de Releases do GitHub.</p>
       <a class="btn primary" href="https://github.com/agentecode/agentecode/releases">Baixar o AgenteCode</a>
       <p class="meta">Confira o hash SHA-256 publicado em cada Release. O Windows pode exibir um aviso do SmartScreen enquanto o instalador não for assinado.</p>
+
+      <div class="install">
+        <h3>Ou instale pela linha de comando</h3>
+        <div class="os-tabs" role="tablist" aria-label="Sistema operacional">
+          <button type="button" role="tab" aria-selected="true" data-os="win">Windows</button>
+          <button type="button" role="tab" aria-selected="false" data-os="linux">Linux</button>
+          <button type="button" role="tab" aria-selected="false" data-os="mac">macOS</button>
+        </div>
+        <div class="os-panel" data-panel="win">
+          <p>PowerShell: baixa o instalador da última Release, mostra o hash SHA-256 e abre o instalador.</p>
+          <div class="code"><button type="button" class="copy">Copiar</button><pre id="cmd-win">$r = Invoke-RestMethod https://api.github.com/repos/agentecode/agentecode/releases/latest
+$a = $r.assets | Where-Object { $_.name -like '*.exe' } | Select-Object -First 1
+Invoke-WebRequest $a.browser_download_url -OutFile $a.name
+Get-FileHash $a.name -Algorithm SHA256
+Start-Process ".\$($a.name)"</pre></div>
+        </div>
+        <div class="os-panel" data-panel="linux" hidden>
+          <p>Debian e Ubuntu: baixa o pacote <code>.deb</code> da última Release, mostra o hash e instala.</p>
+          <div class="code"><button type="button" class="copy">Copiar</button><pre id="cmd-linux">url=$(curl -s https://api.github.com/repos/agentecode/agentecode/releases/latest | grep -o 'https://[^"]*\.deb' | head -n1)
+curl -fLO "$url"
+sha256sum "${url##*/}"
+sudo apt install "./${url##*/}"</pre></div>
+        </div>
+        <div class="os-panel" data-panel="mac" hidden>
+          <p>O pacote para macOS ainda não é gerado. Quando existir, o comando de instalação aparecerá aqui.</p>
+        </div>
+        <p class="fine">Os comandos funcionam a partir da primeira Release publicada. Hoje a página de Releases ainda está vazia. Leia os comandos antes de executar e confira o hash SHA-256 informado na Release.</p>
+      </div>
     </div>
   </section>
 </main>
@@ -128,13 +156,27 @@
 
 <script>
 (function(){
-  var theme='everforest',variant='-clean';
+  var theme='deep-teal',variant='-clean';
   var names={'everforest':'Everforest','deep-teal':'Deep Teal','eficaz':'AgenteCode Eficaz','one-dark-pro':'One Dark Pro'};
   var img=document.getElementById('stage-img');
   function render(){
     img.src='assets/screenshots/'+theme+variant+'.png';
     img.alt='Tema '+names[theme]+(variant?' Clean':'');
   }
+  document.querySelectorAll('.os-tabs button').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.os-tabs button').forEach(function(t){t.setAttribute('aria-selected',t===b)});
+      document.querySelectorAll('.os-panel').forEach(function(p){p.hidden=(p.dataset.panel!==b.dataset.os)});
+    });
+  });
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var text=b.parentNode.querySelector('pre').textContent;
+      var done=function(){b.textContent='Copiado';setTimeout(function(){b.textContent='Copiar'},1500)};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,function(){})}
+      else{var t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(t)}
+    });
+  });
   document.querySelectorAll('.tab').forEach(function(b){
     b.addEventListener('click',function(){
       theme=b.dataset.theme;
