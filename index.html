@@ -93,6 +93,24 @@
   <section id="novidades" class="alt">
     <div class="wrap">
       <div class="sec-head"><h2>Novidades</h2></div>
+
+      <div class="release-banner" style="margin-bottom:28px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 28px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span class="eyebrow" style="margin:0;padding:4px 10px;background:rgba(200,59,40,.2);border-radius:999px;font-size:12px;" id="rel-tag">v0.0.5-test</span>
+            <h3 style="margin:0;font-size:20px;">Destaques da Versão Recente</h3>
+          </div>
+          <span style="color:var(--muted);font-size:14px;" id="rel-date">Atualização contínua</span>
+        </div>
+        <ul style="margin:0;padding-left:20px;color:var(--muted);display:grid;gap:8px;font-size:15px;">
+          <li><b style="color:var(--text);">Identidade oficial no instalador:</b> Assistente de instalação do Windows com logotipo oficial em alta resolução.</li>
+          <li><b style="color:var(--text);">Destaque sintático fiel aos temas:</b> Suporte pleno a <code style="background:#06090f;padding:1px 6px;border-radius:4px;">semanticHighlighting</code> para C# e Razor, eliminando sobreposição indesejada de cores pelo C# Dev Tools.</li>
+          <li><b style="color:var(--text);">Título padronizado da janela:</b> Identificação no formato <code style="background:#06090f;padding:1px 6px;border-radius:4px;">[Projeto] - Agente Code IDE - [Arquivo]</code> (padrão Antigravity).</li>
+          <li><b style="color:var(--text);">Claude Code aberto por padrão:</b> Painel lateral direito abre diretamente na inicialização com largura ergonômica.</li>
+          <li><b style="color:var(--text);">Compatibilidade total com Open VSX:</b> Sem alertas de verificação de assinatura digital ao instalar extensões da comunidade.</li>
+        </ul>
+      </div>
+
       <div class="cards">
         <div class="card"><h3>Nova identidade</h3><p>Símbolo em loop infinito com os delimitadores &lt; e &gt;, em estilo flat, aplicado à IDE, ao instalador e a este site.</p><a href="https://github.com/agentecode/agentecode">Saiba mais</a></div>
         <div class="card"><h3>8 temas nativos</h3><p>Everforest, Deep Teal, AgenteCode Eficaz e One Dark Pro, cada um em versão normal e Clean.</p><a href="#temas">Ver temas</a></div>
@@ -129,7 +147,7 @@
         </div>
         <div class="os-panel" data-panel="win">
           <p>PowerShell: baixa o instalador da última Release, mostra o hash SHA-256 e abre o instalador.</p>
-          <div class="code"><button type="button" class="copy">Copiar</button><pre id="cmd-win">$r = Invoke-RestMethod https://api.github.com/repos/agentecode/agentecode/releases/latest
+          <div class="code"><button type="button" class="copy">Copiar</button><pre id="cmd-win">$r = (Invoke-RestMethod https://api.github.com/repos/agentecode/agentecode/releases)[0]
 $a = $r.assets | Where-Object { $_.name -like '*.exe' } | Select-Object -First 1
 Invoke-WebRequest $a.browser_download_url -OutFile $a.name
 Get-FileHash $a.name -Algorithm SHA256
@@ -137,7 +155,7 @@ Start-Process ".\$($a.name)"</pre></div>
         </div>
         <div class="os-panel" data-panel="linux" hidden>
           <p>Debian e Ubuntu: baixa o pacote <code>.deb</code> da última Release, mostra o hash e instala.</p>
-          <div class="code"><button type="button" class="copy">Copiar</button><pre id="cmd-linux">url=$(curl -s https://api.github.com/repos/agentecode/agentecode/releases/latest | grep -o 'https://[^"]*\.deb' | head -n1)
+          <div class="code"><button type="button" class="copy">Copiar</button><pre id="cmd-linux">url=$(curl -s https://api.github.com/repos/agentecode/agentecode/releases | grep -o 'https://[^"]*\.deb' | head -n1)
 curl -fLO "$url"
 sha256sum "${url##*/}"
 sudo apt install "./${url##*/}"</pre></div>
@@ -199,6 +217,30 @@ sudo apt install "./${url##*/}"</pre></div>
       render();
     });
   });
+
+  // Atualização dinâmica com a release mais recente do GitHub
+  fetch('https://api.github.com/repos/agentecode/agentecode/releases')
+    .then(function(res){ return res.json(); })
+    .then(function(releases){
+      if(!releases || !releases.length) return;
+      var rel = releases[0];
+      var tag = rel.tag_name || '';
+      var exe = rel.assets && rel.assets.find(function(a){ return a.name.endsWith('.exe'); });
+      var tagEl = document.getElementById('rel-tag');
+      var dateEl = document.getElementById('rel-date');
+      if (tagEl && tag) tagEl.textContent = tag;
+      if (dateEl && rel.published_at) {
+        var d = new Date(rel.published_at);
+        dateEl.textContent = 'Publicado em ' + d.toLocaleDateString('pt-BR');
+      }
+      if (exe) {
+        document.querySelectorAll('a.btn.primary[href*="releases"]').forEach(function(btn){
+          btn.href = exe.browser_download_url;
+          btn.textContent = 'Baixar AgenteCode (' + tag + ')';
+        });
+      }
+    })
+    .catch(function(){});
 })();
 </script>
 </body>
