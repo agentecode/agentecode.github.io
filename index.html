@@ -106,7 +106,20 @@
       <h2>Comece a programar com agentes</h2>
       <p class="lead">O instalador para Windows fica disponível na página de Releases do GitHub.</p>
       <a class="btn primary" href="https://github.com/agentecode/agentecode/releases">Baixar o AgenteCode</a>
-      <p class="meta">Confira o hash SHA-256 publicado em cada Release. O Windows pode exibir um aviso do SmartScreen enquanto o instalador não for assinado.</p>
+      <div class="help">
+        <h3>Instalando pela primeira vez?</h3>
+        <ol>
+          <li><b>Baixe o instalador</b> pelo botão acima e abra o arquivo.</li>
+          <li><b>Se o Windows mostrar "O Windows protegeu o computador":</b> clique em <b>Mais informações</b> e depois em <b>Executar assim mesmo</b>. Esse aviso é comum em programas novos que ainda não têm assinatura digital de editor, e não significa que o arquivo tenha algum problema.</li>
+          <li><b>Siga o assistente</b> de instalação. Ao final, abra o AgenteCode pelo Menu Iniciar.</li>
+        </ol>
+        <details>
+          <summary>Quer conferir a integridade do arquivo? (opcional)</summary>
+          <p>Cada versão publicada traz um código de verificação, o <b>hash SHA-256</b>, na página da Release. Para conferir, abra o PowerShell na pasta do arquivo e rode:</p>
+          <div class="code"><button type="button" class="copy">Copiar</button><pre>Get-FileHash .\NOME-DO-INSTALADOR.exe -Algorithm SHA256</pre></div>
+          <p>Compare o resultado com o código da Release. Se forem idênticos, o arquivo é o original, sem alterações.</p>
+        </details>
+      </div>
 
       <div class="install">
         <h3>Ou instale pela linha de comando</h3>
