@@ -119,3 +119,4 @@ footer{background:#06090f;border-top:1px solid var(--line);padding:56px 0 28px;c
 .help summary{cursor:pointer;color:var(--glow);font-weight:600;font-size:15px}
 .help details p{margin:12px 0;color:var(--muted);font-size:14px}
 .help details .code{margin:10px 0}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}.lang button{background:none;border:0;color:var(--muted);padding:4px 11px;font:inherit;font-size:13px;cursor:pointer}.lang button:hover{color:var(--text)}.lang button[aria-pressed=true]{color:var(--text);background:var(--card)}
